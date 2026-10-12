@@ -1,0 +1,827 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    background:
+        radial-gradient(circle at 50% 20%, #fff1f8 0%, #ffd9ea 35%, #ffc1dd 65%, #ffb2d5 100%);
+    font-family: "Segoe UI", Arial, sans-serif;
+    position: relative;
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,.8), transparent 20%),
+        radial-gradient(circle at 80% 60%, rgba(255,255,255,.65), transparent 25%),
+        radial-gradient(circle at 50% 90%, rgba(255,255,255,.5), transparent 25%);
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+/* =========================================
+   BUNTING
+========================================= */
+
+.bunting {
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    width: 100%;
+    max-width: 1500px;
+
+    transform: translateX(-50%);
+
+    z-index: 5;
+
+    animation: bannerDrop 1.2s ease-out forwards;
+}
+
+.bunting img {
+    width: 100%;
+    display: block;
+
+    filter: drop-shadow(0 8px 10px rgba(255, 70, 150, .2));
+}
+
+
+@keyframes bannerDrop {
+
+    0% {
+        transform: translate(-50%, -100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.container {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 170px;
+
+    z-index: 3;
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.heading {
+    text-align: center;
+
+    opacity: 0;
+    transform: translateY(-40px);
+
+    animation: headingEnter 1.2s ease forwards;
+    animation-delay: .8s;
+
+    z-index: 10;
+}
+
+.heading h1 {
+    display: flex;
+    flex-direction: column;
+
+    line-height: .9;
+
+    font-size: clamp(65px, 9vw, 135px);
+
+    font-weight: 900;
+
+    letter-spacing: -5px;
+
+    text-shadow:
+        0 4px 0 #fff,
+        0 8px 15px rgba(180, 50, 110, .25);
+}
+
+
+#Happy {
+    color: #ff3c91;
+
+    animation: textPop 1s ease forwards;
+}
+
+#Birthday {
+    color: #ff579d;
+
+    animation: textPop 1s ease forwards;
+    animation-delay: .25s;
+}
+
+
+.subtitle {
+    margin-top: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    color: #a93469;
+
+    font-size: clamp(15px, 2vw, 22px);
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    opacity: 0;
+
+    animation: subtitleEnter 1s ease forwards;
+    animation-delay: 1.7s;
+}
+
+
+@keyframes headingEnter {
+
+    0% {
+        opacity: 0;
+        transform: translateY(-60px) scale(.85);
+    }
+
+    70% {
+        transform: translateY(8px) scale(1.03);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+@keyframes textPop {
+
+    0% {
+        opacity: 0;
+        transform: scale(.3);
+    }
+
+    70% {
+        transform: scale(1.12);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+@keyframes subtitleEnter {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   BEAR
+========================================= */
+
+.bear-area {
+    position: relative;
+
+    width: min(550px, 70vw);
+
+    margin-top: 20px;
+
+    z-index: 8;
+
+    opacity: 0;
+
+    transform:
+        translateY(120px)
+        scale(.75);
+
+    animation: bearEnter 1.5s cubic-bezier(.17,.67,.25,1.25) forwards;
+    animation-delay: 1.5s;
+}
+
+
+.bear-area img {
+    width: 100%;
+
+    display: block;
+
+    filter:
+        drop-shadow(0 25px 20px rgba(110, 40, 70, .25));
+
+    animation: bearFloat 3.5s ease-in-out infinite;
+    animation-delay: 3s;
+}
+
+
+@keyframes bearEnter {
+
+    0% {
+        opacity: 0;
+        transform:
+            translateY(160px)
+            scale(.65);
+    }
+
+    70% {
+        opacity: 1;
+        transform:
+            translateY(-10px)
+            scale(1.04);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes bearFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(1deg);
+    }
+}
+
+
+/* =========================================
+   MAIN BALLOON
+========================================= */
+
+.main-balloon {
+    position: absolute;
+
+    width: 180px;
+
+    left: calc(50% + 260px);
+    top: 330px;
+
+    opacity: 0;
+
+    z-index: 7;
+
+    animation:
+        balloonEnter 1.4s ease forwards,
+        balloonFloat 3s ease-in-out infinite;
+
+    animation-delay: 2.3s, 3.7s;
+}
+
+
+.main-balloon img {
+    width: 100%;
+    display: block;
+
+    filter:
+        drop-shadow(0 15px 12px rgba(210, 30, 100, .2));
+}
+
+
+@keyframes balloonEnter {
+
+    0% {
+        opacity: 0;
+        transform:
+            translateY(250px)
+            scale(.3)
+            rotate(-20deg);
+    }
+
+    70% {
+        opacity: 1;
+        transform:
+            translateY(-20px)
+            scale(1.08)
+            rotate(5deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1)
+            rotate(0);
+    }
+}
+
+
+@keyframes balloonFloat {
+
+    0%,
+    100% {
+        margin-top: 0;
+        transform: rotate(0);
+    }
+
+    50% {
+        margin-top: -20px;
+        transform: rotate(5deg);
+    }
+}
+
+
+/* =========================================
+   SIDE BALLOONS
+========================================= */
+
+.side-balloon {
+    position: fixed;
+
+    width: 110px;
+
+    z-index: 2;
+
+    opacity: .8;
+}
+
+
+.side-balloon img {
+    width: 100%;
+}
+
+
+.balloon-left {
+    left: 20px;
+    bottom: 50px;
+
+    animation: sideLeft 4s ease-in-out infinite;
+}
+
+
+.balloon-right {
+    right: 20px;
+    bottom: 80px;
+
+    animation: sideRight 4.5s ease-in-out infinite;
+}
+
+
+@keyframes sideLeft {
+
+    0%,
+    100% {
+        transform: rotate(-8deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(8deg) translateY(-30px);
+    }
+}
+
+
+@keyframes sideRight {
+
+    0%,
+    100% {
+        transform: rotate(8deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(-8deg) translateY(-35px);
+    }
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.birthday-button {
+    position: relative;
+
+    margin-top: -10px;
+
+    padding: 15px 35px;
+
+    border: none;
+    border-radius: 50px;
+
+    background: linear-gradient(
+        135deg,
+        #ff3f91,
+        #ff70ae
+    );
+
+    color: white;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(230, 40, 120, .3);
+
+    opacity: 0;
+
+    animation: buttonEnter 1s ease forwards;
+    animation-delay: 3s;
+
+    z-index: 20;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+
+.birthday-button:hover {
+    transform: translateY(-4px) scale(1.05);
+
+    box-shadow:
+        0 15px 30px rgba(230, 40, 120, .4);
+}
+
+
+.birthday-button:active {
+    transform: scale(.95);
+}
+
+
+@keyframes buttonEnter {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   HEARTS
+========================================= */
+
+.background-hearts span {
+    position: fixed;
+
+    bottom: -50px;
+
+    color: rgba(255, 70, 150, .35);
+
+    font-size: 25px;
+
+    z-index: 1;
+
+    animation: heartUp linear infinite;
+}
+
+
+.background-hearts span:nth-child(1) {
+    left: 8%;
+    animation-duration: 7s;
+}
+
+.background-hearts span:nth-child(2) {
+    left: 20%;
+    animation-duration: 10s;
+    animation-delay: 2s;
+}
+
+.background-hearts span:nth-child(3) {
+    left: 35%;
+    animation-duration: 8s;
+    animation-delay: 1s;
+}
+
+.background-hearts span:nth-child(4) {
+    left: 50%;
+    animation-duration: 11s;
+}
+
+.background-hearts span:nth-child(5) {
+    left: 65%;
+    animation-duration: 9s;
+    animation-delay: 3s;
+}
+
+.background-hearts span:nth-child(6) {
+    left: 80%;
+    animation-duration: 8s;
+}
+
+.background-hearts span:nth-child(7) {
+    left: 92%;
+    animation-duration: 12s;
+    animation-delay: 2s;
+}
+
+
+@keyframes heartUp {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(.5)
+            rotate(0);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            scale(1.4)
+            rotate(30deg);
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   POPUP
+========================================= */
+
+.popup {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(80, 20, 50, .45);
+
+    backdrop-filter: blur(8px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity .4s ease,
+        visibility .4s ease;
+
+    z-index: 100;
+}
+
+
+.popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.popup-box {
+    position: relative;
+
+    width: min(450px, 88vw);
+
+    padding: 45px 30px 35px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff,
+            #fff0f7
+        );
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 30px 70px rgba(80, 10, 50, .35);
+
+    transform: scale(.5) translateY(50px);
+
+    transition:
+        transform .5s cubic-bezier(.17,.67,.25,1.25);
+}
+
+
+.popup.active .popup-box {
+    transform: scale(1) translateY(0);
+}
+
+
+.popup-heart {
+    font-size: 65px;
+
+    animation: heartBeat 1.2s infinite;
+}
+
+
+.popup-box h2 {
+    margin-top: 10px;
+
+    font-size: 40px;
+
+    color: #f23b89;
+}
+
+
+.popup-box p {
+    margin-top: 15px;
+
+    color: #8c4567;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+.cake {
+    font-size: 60px;
+
+    margin-top: 15px;
+}
+
+
+.close-btn {
+    position: absolute;
+
+    top: 12px;
+    right: 17px;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ff73ac;
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+
+/* =========================================
+   CONFETTI
+========================================= */
+
+#confetti-container {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 200;
+}
+
+
+.confetti {
+    position: absolute;
+
+    width: 9px;
+    height: 14px;
+
+    top: -30px;
+
+    animation:
+        confettiFall 3s linear forwards;
+}
+
+
+@keyframes confettiFall {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .container {
+        padding-top: 130px;
+    }
+
+    .bunting {
+        width: 150%;
+        left: 50%;
+    }
+
+    .heading h1 {
+        font-size: 65px;
+    }
+
+    .bear-area {
+        width: 85vw;
+        margin-top: 30px;
+    }
+
+    .main-balloon {
+        width: 100px;
+
+        left: auto;
+        right: 8px;
+        top: 300px;
+    }
+
+    .side-balloon {
+        width: 70px;
+    }
+
+    .balloon-left {
+        left: -10px;
+    }
+
+    .balloon-right {
+        right: -10px;
+    }
+
+    .birthday-button {
+        margin-top: 5px;
+        padding: 13px 28px;
+        font-size: 16px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+}
